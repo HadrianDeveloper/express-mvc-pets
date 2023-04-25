@@ -1,0 +1,30 @@
+{
+  "name": "express-mvc-pets",
+  "version": "1.0.0",
+  "description": "Serving locally stored JSON data via Express server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon listen.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HadrianDeveloper/express-mvc-pets.git"
+  },
+  "keywords": [
+    "express.js",
+    "MVC",
+    "promises",
+    "callbacks"
+  ],
+  "author": "HadrianDeveloper",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HadrianDeveloper/express-mvc-pets/issues"
+  },
+  "homepage": "https://github.com/HadrianDeveloper/express-mvc-pets#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
