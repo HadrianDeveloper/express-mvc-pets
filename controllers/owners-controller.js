@@ -11,3 +11,4 @@ exports.getAllOwners = (req, res) => {
         .then((owners) => res.status(200).send(owners))
         .catch((err) => res.status(500).send({msg: 'Cannot retrieve at this time'}))
 };
+

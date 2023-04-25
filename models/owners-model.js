@@ -5,7 +5,6 @@ exports.selectOwnerById = (id) => {
         .then((owner) => JSON.parse(owner))
 };
 
-
 //solution 1 - from scratch
 exports.selectAllOwners = () => {
     return readdir('./data/owners')
@@ -30,3 +29,4 @@ exports.selectAllOwners2 = () => {
         })
         .then((allOwners) => allOwners)
 };
+
