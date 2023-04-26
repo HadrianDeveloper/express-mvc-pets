@@ -1,4 +1,5 @@
-const { readdir, readFile } = require("fs/promises");
+const { readdir, readFile, writeFile } = require("fs/promises");
+const { idCreator } = require("../utils");
 
 exports.selectAllPets = (q) => {
     return readdir('./data/pets')
@@ -33,4 +34,16 @@ exports.selectPetsOfOwner = (id) => {
 exports.selectPetById = (id) => {
     return readFile(`./data/pets/${id}.json`, 'utf8')
         .then((pet) => pet)
+};
+
+exports.insertPet = (id, body) => {
+    return idCreator('pets')
+        .then((newFilename) => {
+            const newObj = Object.assign({id: newFilename.slice(0, -5)}, body)
+            return Promise.all([
+                newObj,
+                writeFile(`./data/pets/${newFilename}`, JSON.stringify(newObj))
+            ]) 
+        })
+        .then(([newObj, ]) => newObj)
 };

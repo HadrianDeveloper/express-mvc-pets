@@ -1,9 +1,1 @@
-{
-  "id": "p10",
-  "name": "Lady Penelope",
-  "avatarUrl": "https://s-media-cache-ak0.pinimg.com/736x/4c/2a/15/4c2a150eaca5d299045818782e0d47a7.jpg",
-  "favouriteFood": "Grapefruit",
-  "owner": "o4",
-  "age": 14,
-  "temperament": "happy"
-}
+{"id":"p10","name":"Leprechaun","avatarUrl":"https://s-media-cache-ak0.pinimg.com/736x/2a/e2/ef/2ae2ef93b2d3fc875d289883800b9e7c.jpg","favouriteFood":"Gold","owner":"o2","age":2,"temperament":"grumpy"}

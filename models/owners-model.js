@@ -1,4 +1,5 @@
 const { readFile, readdir, writeFile } = require("fs/promises");
+const { idCreator } = require("../utils");
 
 exports.selectOwnerById = (id) => {
     return readFile(`./data/owners/${id}.json`, 'utf8')
@@ -43,17 +44,17 @@ exports.updateOwnerById = (id, body) => {
         .then(([updated, ]) => updated)
 };
 
-function idCreator() {
-    return readdir('./data/owners')
-        .then((fileList) => {
-            const orderedList = fileList.reverse();
-            let nums = parseInt(orderedList[0].slice(1, -5));
-            return `o${++nums}.json`;
-        })
-};
+// function idCreator() {
+//     return readdir('./data/owners')
+//         .then((fileList) => {
+//             const orderedList = fileList.reverse();
+//             let nums = parseInt(orderedList[0].slice(1, -5));
+//             return `o${++nums}.json`;
+//         })
+// };
 
 exports.insertNewOwner = (body) => {
-    return idCreator()
+    return idCreator('owners')
         .then((newName) => {
             const newObj = {id: newName.slice(0, -5), ...body}
             return Promise.all([
