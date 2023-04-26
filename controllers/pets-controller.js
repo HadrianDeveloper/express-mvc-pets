@@ -1,4 +1,4 @@
-const { selectPetsOfOwner, selectAllPets, selectPetById, insertPet } = require("../models/pets-model");
+const { selectPetsOfOwner, selectAllPets, selectPetById, insertPet, deletePet } = require("../models/pets-model");
 
 exports.getAllPets = (req, res) => {
     const q = Object.keys(req.query).length ? req.query : null;
@@ -24,5 +24,11 @@ exports.addPet = (req, res) => {
     const {body, params} = req;
     insertPet(params.id, body)
         .then((added) => res.status(201).send({Success: added}))
+        .catch((err) => console.log(err))
+};
+
+exports.removePet = (req, res) => {
+    deletePet(req.params.id)
+        .then((msg) => res.status(200).send({msg: 'Pet has been deleted!'}))
         .catch((err) => console.log(err))
 };

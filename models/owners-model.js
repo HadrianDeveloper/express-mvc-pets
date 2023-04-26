@@ -1,5 +1,6 @@
-const { readFile, readdir, writeFile } = require("fs/promises");
+const { readFile, readdir, writeFile, rm } = require("fs/promises");
 const { idCreator } = require("../utils");
+const { selectAllPets } = require("./pets-model");
 
 exports.selectOwnerById = (id) => {
     return readFile(`./data/owners/${id}.json`, 'utf8')
@@ -44,15 +45,6 @@ exports.updateOwnerById = (id, body) => {
         .then(([updated, ]) => updated)
 };
 
-// function idCreator() {
-//     return readdir('./data/owners')
-//         .then((fileList) => {
-//             const orderedList = fileList.reverse();
-//             let nums = parseInt(orderedList[0].slice(1, -5));
-//             return `o${++nums}.json`;
-//         })
-// };
-
 exports.insertNewOwner = (body) => {
     return idCreator('owners')
         .then((newName) => {
@@ -63,4 +55,17 @@ exports.insertNewOwner = (body) => {
             ])
         })
         .then(([newObj, ]) => newObj)
+};
+
+exports.deleteOwner = (id) => {
+    return selectAllPets()
+        .then((petList) => {
+            const toDelete = petList.filter((pet) => pet.owner === id)
+            for (let x = 0; x < toDelete.length; x++) {
+                rm(`./data/pets/${toDelete[x].id}.json`)
+            }
+        })
+        .then(() => rm(`./data/owners/${id}.json`)
+        .then(() => null)
+        )
 };
